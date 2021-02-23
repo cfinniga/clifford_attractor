@@ -25,13 +25,6 @@ function download() {
   to_save.save('Image.png')
 }
 
-function increment_colour() {
-  colour_state += 1
-  if (colour_state == 100) {
-    colour_state = 0
-  }
-  return colour_state
-}
 
 function start() {
   startButton.style('color:gray')
@@ -59,7 +52,7 @@ function pretty() {
 function fadeChanged() {
   if (this.checked()) {
     print('checked')
-    opacity = 20
+    opacity = 5
   }
   else {
     print('no')
@@ -95,7 +88,7 @@ function setup() {
   colorMode(HSB, 100);
   d_iter = 0
   let bound = 2
-  frameRate(40)
+
   slider_spacing = 50
   
   a = 1.2
@@ -113,15 +106,15 @@ function setup() {
   let start_y = canvas_y
   let offset = 0//140
   let slider_offset = 100
-  a_slider = createSlider(-bound, bound, a, 0);
+  a_slider = createSlider(-bound, bound, a, 0.01);
   a_slider.position(10+ offset,start_y + slider_offset)
   a_slider.style('width', '200px');
   
-  b_slider = createSlider(-bound, bound, b, 0);
+  b_slider = createSlider(-bound, bound, b, 0.01);
   b_slider.position(10 + offset,start_y + slider_spacing + slider_offset)
   b_slider.style('width', '200px');
   
-  c_slider = createSlider(-bound, bound, c, 0);
+  c_slider = createSlider(-bound, bound, c, 0.01);
   c_slider.position(10 + offset,start_y + slider_spacing*2 + slider_offset)
   c_slider.style('width', '200px');
   
@@ -129,10 +122,13 @@ function setup() {
   d_slider.position(10 + offset,start_y + slider_spacing*3 + slider_offset)
   d_slider.style('width', '200px');
   
-  iter_slider = createSlider(100, 500, 200, 50);
+  iter_slider = createSlider(50, 1000, 100, 10);
   iter_slider.position(10 + offset,start_y + slider_spacing*4 + slider_offset)
   iter_slider.style('width', '200px');
   
+    fr_slider = createSlider(5, 60, 30, 5);
+  fr_slider.position(10 + offset,start_y + slider_spacing*5 + slider_offset)
+  fr_slider.style('width', '200px');
   
   startButton = createButton('start')
   startButton.position(10,start_y)
@@ -171,12 +167,14 @@ function setup() {
   text('b', b_slider.x + b_slider.width + 10, b_slider.y - canvas_y + 15);
   text('c', c_slider.x + c_slider.width + 10, c_slider.y - canvas_y + 15);
   text('d', d_slider.x + d_slider.width + 10, d_slider.y -canvas_y + 15);
-  text('number of iterations', iter_slider.x + iter_slider.width + 10, iter_slider.y - canvas_y + 15);
+  text('number of iterations', iter_slider.x + 10, iter_slider.y - canvas_y + 15);
+  text('Speed', fr_slider.x + 10, fr_slider.y - canvas_y + 15);
+  
 
 }
 
 function draw() {
-
+  frameRate(fr_slider.value())
   //scale(0.9)
     let a = a_slider.value()
   let b = b_slider.value()
@@ -214,5 +212,7 @@ function draw() {
     text('c = ' + c, c_slider.x, c_slider.y - canvas_y + 15 + text_y_offset);
     text('d = ' + d, d_slider.x, d_slider.y -canvas_y + 15 + text_y_offset);
     text('number of iterations = ' + iters, iter_slider.x, iter_slider.y - canvas_y + 15 + text_y_offset);
+  
+    text('Speed = ' + fr_slider.value(), fr_slider.x, fr_slider.y - canvas_y + 15 +  text_y_offset);
 
 }

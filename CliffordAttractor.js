@@ -1,3 +1,11 @@
+function increment_colour() {
+  colour_state += 1
+  if (colour_state == 100) {
+    colour_state = 0
+  }
+  return colour_state
+}
+
 function animate_attractor(a,b,c,d, iterations) {
     particle = new Particle(width/2,height/2)
     stroke(100)
