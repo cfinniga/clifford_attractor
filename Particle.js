@@ -18,7 +18,7 @@ class Particle {
     fill(10)
     push()
     translate(width/2,height/2)
-    ellipse(200*this.x,200*this.y,1)
+    ellipse(100*this.x + 60,100*this.y,1)
 
     pop()
   }
