@@ -51,14 +51,7 @@ function setup() {
 
   controls.initialize(canvas_x,canvas_y)
   d_iter = 0
-  /*
-
-  d_iter = 0
-
-  let slider_offset = 100
-  let slider_spacing = 50
-  setup_buttons(slider_spacing,slider_offset)
-  */
+  
   start_y = 20
 
 }
@@ -66,11 +59,11 @@ function setup() {
 function draw() {
 
   if (animation_state == 'on') {
-    d_iter += 0.5
-    d_iter = d_iter%200
-    d = d_iter/50 - 2
-    controls.d_slider.elt.value = d
-
+    d_iter = controls.d_slider.value() + 0.005
+    if (d_iter > 2) {
+      d_iter = -2
+    }
+    controls.d_slider.elt.value = d_iter
   }
 
   push()
