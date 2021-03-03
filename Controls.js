@@ -58,7 +58,7 @@ class Controls {
   
   create_custom_slider(lower_bound,upper_bound,start,y_position) {
     var x_position = this.offset + 10
-    var slider = createSlider(lower_bound, upper_bound, start, 0.01)
+    var slider = createSlider(lower_bound, upper_bound, start, 0.0001)
 
     slider.position(x_position,y_position)
     slider.style('width', '200px')
@@ -85,7 +85,7 @@ class Controls {
     this.a = 1.2
     this.b = -0.945652
     this.c = -0.847
-    this.d = 1.2
+    this.d = 0
     
     this.prev_a = -10
     this.prev_b = -10
@@ -103,7 +103,7 @@ class Controls {
     this.a_slider = this.create_custom_slider(-bound,bound,1.4, this.start_y + this.slider_offset)
     this.b_slider = this.create_custom_slider(-bound,bound,1.4, this.start_y + this.slider_spacing + this.slider_offset)
     this.c_slider = this.create_custom_slider(-bound,bound,1.4, this.start_y + this.slider_spacing*2 + this.slider_offset)
-    this.d_slider = this.create_custom_slider(-bound,bound,1.4, this.start_y + this.slider_spacing*3 + this.slider_offset)
+    this.d_slider = this.create_custom_slider(-bound,bound,-2, this.start_y + this.slider_spacing*3 + this.slider_offset)
     this.iter_slider = this.create_custom_slider(50,2000,500, this.start_y + this.slider_spacing*4 + this.slider_offset)
     
     this.update_text()
@@ -151,6 +151,7 @@ class Controls {
       this.b = this.b_slider.value()
       this.c = this.c_slider.value()
       this.d = this.d_slider.value()
+
     if (this.a != this.prev_a || this.b != this.prev_b || this.c != this.prev_c || this.d != this.prev_d) {
       return true
     }
