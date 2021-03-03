@@ -6,7 +6,7 @@ class Particle {
     this.prevY = y
   }
 
-  increment(a,b,c,d) {
+  move(a,b,c,d) {
     this.prevX = this.x
     this.prevY = this.y
     this.x = sin(a*this.prevY) + c*cos(a*this.prevX)
